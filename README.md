@@ -88,7 +88,7 @@ Or you can specify the mode directly.
 ./build.sh all # builds both above
 ```
 
-- `loader-launcher`: builds Pico Loader + Pico Launcher only (no BIOS file required). If firmware is already installed on DSPico, copying the files generated here to the SD card makes DSPico usable.
+- `loader-launcher`: builds Pico Loader + Pico Launcher only (no BIOS file required). SD-card copy-ready files are generated in `out/sdcard/`.
 - `firmware`: builds DSPico firmware only (BIOS file required)
 - `all`: builds firmware + loader + launcher (BIOS file required)
 
@@ -117,6 +117,15 @@ out/
   launcher/
     LAUNCHER.nds
     _pico/
+  sdcard/
+    _picoboot.nds
+    _pico/
+      picoLoader7.bin
+      picoLoader9.bin
+      aplist.bin
+      savelist.bin
+      patchlist.bin
+      themes/
   firmware/
     DSpico.uf2
     default.nds
@@ -124,3 +133,5 @@ out/
     BOOTLOADER.nds
     uartBufv060.bin    # generated only when using --wrfuxxed
 ```
+
+For SD-card setup, copy everything inside `out/sdcard/` to the root of your micro SD card.

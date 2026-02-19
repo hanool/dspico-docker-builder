@@ -60,7 +60,7 @@ build_loader_launcher() {
     make
   )
 
-  mkdir -p "${OUT_DIR}/loader" "${OUT_DIR}/launcher"
+  mkdir -p "${OUT_DIR}/loader" "${OUT_DIR}/launcher" "${OUT_DIR}/sdcard/_pico"
 
   cp "${SRC_DIR}/pico-loader/picoLoader7.bin" "${OUT_DIR}/loader/"
   cp "${SRC_DIR}/pico-loader/picoLoader9_DSPICO.bin" "${OUT_DIR}/loader/"
@@ -72,6 +72,16 @@ build_loader_launcher() {
 
   cp "${SRC_DIR}/pico-launcher/LAUNCHER.nds" "${OUT_DIR}/launcher/"
   cp -r "${SRC_DIR}/pico-launcher/_pico" "${OUT_DIR}/launcher/"
+
+  cp -r "${SRC_DIR}/pico-launcher/_pico/." "${OUT_DIR}/sdcard/_pico/"
+  cp "${SRC_DIR}/pico-launcher/LAUNCHER.nds" "${OUT_DIR}/sdcard/_picoboot.nds"
+  cp "${SRC_DIR}/pico-loader/picoLoader7.bin" "${OUT_DIR}/sdcard/_pico/picoLoader7.bin"
+  cp "${SRC_DIR}/pico-loader/picoLoader9_DSPICO.bin" "${OUT_DIR}/sdcard/_pico/picoLoader9.bin"
+  cp "${SRC_DIR}/pico-loader/data/aplist.bin" "${OUT_DIR}/sdcard/_pico/aplist.bin"
+  cp "${SRC_DIR}/pico-loader/data/savelist.bin" "${OUT_DIR}/sdcard/_pico/savelist.bin"
+  if [[ -f "${SRC_DIR}/pico-loader/data/patchlist.bin" ]]; then
+    cp "${SRC_DIR}/pico-loader/data/patchlist.bin" "${OUT_DIR}/sdcard/_pico/patchlist.bin"
+  fi
 }
 
 build_firmware() {

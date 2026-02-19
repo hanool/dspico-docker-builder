@@ -88,7 +88,7 @@ Enter choice [1-3]:
 ./build.sh all # 위의 둘 다 실행
 ```
 
-- `loader-launcher`: Pico Loader + Pico Launcher만 빌드 (BIOS 파일 불필요). (처음에 DSPico에 펌웨서가 설치 되어 있다면) 여기서 생성된 파일을 sd카드에 넣으면 DSPico가 사용가능해집니다.
+- `loader-launcher`: Pico Loader + Pico Launcher만 빌드 (BIOS 파일 불필요). SD 카드 복사 준비가 된 파일은 `out/sdcard/`에 생성됩니다.
 - `firmware`: DSPico 펌웨어만 빌드 (BIOS 파일 필요)
 - `all`: 펌웨어 + 로더 + 런처 모두 빌드 (BIOS 파일 필요)
 
@@ -117,6 +117,15 @@ out/
   launcher/
     LAUNCHER.nds
     _pico/
+  sdcard/
+    _picoboot.nds
+    _pico/
+      picoLoader7.bin
+      picoLoader9.bin
+      aplist.bin
+      savelist.bin
+      patchlist.bin
+      themes/
   firmware/
     DSpico.uf2
     default.nds
@@ -124,3 +133,5 @@ out/
     BOOTLOADER.nds
     uartBufv060.bin    # --wrfuxxed 사용 시에만 생성
 ```
+
+SD 카드 준비는 `out/sdcard/` 안의 내용을 SD 카드 루트에 그대로 복사하면 됩니다.

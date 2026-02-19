@@ -74,9 +74,7 @@ if [[ "$ENABLE_WRFUXXED" -eq 1 && "$MODE" == "loader-launcher" ]]; then
   exit 1
 fi
 
-if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
-  docker build -f "$DOCKERFILE" -t "$IMAGE_NAME" .
-fi
+docker build -f "$DOCKERFILE" -t "$IMAGE_NAME" .
 
 mkdir -p "$ASSETS_DIR"
 
