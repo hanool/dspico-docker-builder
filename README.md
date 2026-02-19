@@ -3,47 +3,108 @@
 [![English](https://img.shields.io/badge/lang-English-blue)](README.md)
 [![한국어](https://img.shields.io/badge/lang-한국어-red)](README.ko.md)
 
-This repository provides a Docker-based build flow for DSPico projects.
+Build DSPico projects with Docker, easily.
 
-It supports three modes:
+## Quick Start
 
-- `loader-launcher`: build Pico Loader and Pico Launcher only
-- `firmware`: build DSPico firmware pipeline only
-- `all`: build firmware, loader, and launcher in one run
+```bash
+git clone https://github.com/hanool/dspico-docker-builder.git
+cd dspico-docker-builder
+./build.sh
+```
 
-## Requirements
+See below for details on each step.
 
-- Docker
-- Local files required for `firmware` and `all` modes (not needed for loader/launcher-only builds), placed under `assets/`:
-  - NTR blowfish source: `biosnds7.rom` or `ntrBlowfish.bin`
-  - Optional TWL blowfish source: `biosdsi7.rom` or `twlBlowfish.bin` (only needed for TWL hybrid/exclusive ROM encryption)
-  - Blowfish table reference: https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
-- Optional only with `--wrfuxxed`:
+### 1) Install Docker
+
+- Install Docker Desktop: https://www.docker.com/get-started/
+- After installation, verify Docker works in a terminal:
+
+```bash
+docker --version
+```
+
+### 2) Prepare BIOS files
+
+To build `firmware` or `all` mode, you need one of the following. If you just bought DSPico, firmware is already installed, so you can skip this for now.
+
+- `biosnds7.rom` (recommended)
+- `ntrBlowfish.bin`
+
+How to dump `biosnds7.rom`:
+- https://wiki.ds-homebrew.com/ds-index/ds-bios-firmware-dump
+
+Place prepared files in this repository's `assets/` directory.
+
+Optional files:
+
+- For TWL hybrid/exclusive ROM encryption:
+  - `biosdsi7.rom` or `twlBlowfish.bin`
+- When using `--wrfuxxed`:
   - `wrfu.srl` (WRFU Tester v0.60)
 
-Firmware and all-mode builds follow the official guide:
-- https://github.com/LNH-team/dspico/blob/develop/GUIDE.md
+Blowfish table reference:
+- https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
 
-## Build commands
+### 3) Get the source code
 
-Run from the repository root:
+Option A (using Git):
+
+```bash
+git clone https://github.com/hanool/dspico-docker-builder.git
+cd dspico-docker-builder
+```
+
+Option B (without Git):
+
+- Open the GitHub repository page.
+- Click `Code` -> `Download ZIP`.
+- Extract the ZIP archive.
+- Open a terminal in the extracted `dspico-docker-builder` folder.
+
+### 4) Make the build script executable (macOS/Linux)
+
+```bash
+chmod +x build.sh
+```
+
+### 5) Run the build
+
+Run `./build.sh` and choose a number.
+
+```text
+Select build mode:
+  1) loader-launcher
+  2) firmware
+  3) all
+Enter choice [1-3]:
+```
+
+Or you can specify the mode directly.
 
 ```bash
 ./build.sh loader-launcher
-./build.sh firmware
-./build.sh all
+./build.sh firmware # builds firmware
+./build.sh all # builds both above
 ```
 
-WRFUxxed is disabled by default. To enable it in firmware/all mode:
+- `loader-launcher`: builds Pico Loader + Pico Launcher only (no BIOS file required). If firmware is already installed on DSPico, copying the files generated here to the SD card makes DSPico usable.
+- `firmware`: builds DSPico firmware only (BIOS file required)
+- `all`: builds firmware + loader + launcher (BIOS file required)
+
+WRFUxxed is disabled by default. When using WRFUxxed:
 
 ```bash
 ./build.sh firmware --wrfuxxed
 ./build.sh all --wrfuxxed
 ```
 
+`firmware` and `all` modes follow the official guide:
+- https://github.com/LNH-team/dspico/blob/develop/GUIDE.md
+
 ## Output
 
-Artifacts are written to `out/`:
+Artifacts are generated in `out/`.
 
 ```text
 out/
@@ -61,5 +122,5 @@ out/
     default.nds
     DSpico.dldi
     BOOTLOADER.nds
-    uartBufv060.bin    # only with --wrfuxxed
+    uartBufv060.bin    # generated only when using --wrfuxxed
 ```

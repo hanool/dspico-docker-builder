@@ -3,45 +3,108 @@
 [![English](https://img.shields.io/badge/lang-English-blue)](README.md)
 [![한국어](https://img.shields.io/badge/lang-한국어-red)](README.ko.md)
 
-이 저장소는 DSPico 프로젝트를 Docker로 빌드하기 위한 워크플로를 제공합니다.
+DSPico 프로젝트를 Docker로 쉽게 빌드하기
 
-지원 모드:
+## 빠른 시작
 
-- `loader-launcher`: Pico Loader와 Pico Launcher만 빌드
-- `firmware`: DSPico 펌웨어 파이프라인만 빌드
-- `all`: 펌웨어, 로더, 런처를 한 번에 빌드
+```bash
+git clone https://github.com/hanool/dspico-docker-builder.git
+cd dspico-docker-builder
+./build.sh
+```
 
-## 요구사항
+각 단계에 대한 설명은 아래를 참조하세요.
 
-- Docker
-- `firmware` 및 `all` 모드에 필요한 로컬 파일(loader&launcher만 빌드시 필요 없음)
-  - NTR blowfish 소스: `biosnds7.rom` 또는 `ntrBlowfish.bin`
-  - 선택 TWL blowfish 소스: `biosdsi7.rom` 또는 `twlBlowfish.bin` (TWL 하이브리드/전용 롬 암호화 시에만 필요)
-  - Blowfish 테이블 참고: https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
-- `--wrfuxxed` 사용 시에만 필요한 선택 파일
+### 1) Docker 설치
+
+- Docker Desktop 설치: https://www.docker.com/get-started/
+- 설치 후 터미널에서 Docker가 동작하는지 확인:
+
+```bash
+docker --version
+```
+
+### 2) BIOS 파일 준비
+
+`firmware` 또는 `all` 모드를 빌드하려면 다음 중 하나가 필요합니다. 처음 DSPico를 구매하면 펌웨어가 이미 설치되어 있으니 일단 넘어가도 괜찮습니다.
+
+- `biosnds7.rom` (권장)
+- `ntrBlowfish.bin`
+
+`biosnds7.rom` 덤프 방법:
+- https://wiki.ds-homebrew.com/ds-index/ds-bios-firmware-dump
+
+준비한 파일을 이 저장소의 `assets/` 폴더에 넣어주세요.
+
+선택 파일:
+
+- TWL 하이브리드/전용 롬 암호화 시:
+  - `biosdsi7.rom` 또는 `twlBlowfish.bin`
+- `--wrfuxxed` 사용 시:
   - `wrfu.srl` (WRFU Tester v0.60)
 
-펌웨어 및 all 모드는 공식 가이드를 기준으로 동작합니다.
-- https://github.com/LNH-team/dspico/blob/develop/GUIDE.md
+Blowfish 테이블 참고:
+- https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
 
-## 빌드 명령어
+### 3) 소스 코드 받기
+
+방법 A (Git 사용):
+
+```bash
+git clone https://github.com/hanool/dspico-docker-builder.git
+cd dspico-docker-builder
+```
+
+방법 B (Git 없이):
+
+- GitHub 저장소 페이지를 엽니다.
+- `Code` -> `Download ZIP`을 클릭합니다.
+- ZIP 압축을 해제합니다.
+- 해제한 `dspico-docker-builder` 폴더에서 터미널을 엽니다.
+
+### 4) 빌드 스크립트 실행 권한 부여 (macOS/Linux)
+
+```bash
+chmod +x build.sh
+```
+
+### 5) 빌드 실행
+
+`./build.sh`를 실행한 뒤 번호를 선택하세요.
+
+```text
+Select build mode:
+  1) loader-launcher
+  2) firmware
+  3) all
+Enter choice [1-3]:
+```
+
+또는 모드를 직접 지정할 수도 있습니다.
 
 ```bash
 ./build.sh loader-launcher
-./build.sh firmware
-./build.sh all
+./build.sh firmware # 펌웨어를 빌드합니다
+./build.sh all # 위의 둘 다 실행
 ```
 
-기본값은 WRFUxxed 비활성화입니다. WRFUxxed 사용시 파일을 준비하고 --wrfuxxed 플래그를 사용하세요.
+- `loader-launcher`: Pico Loader + Pico Launcher만 빌드 (BIOS 파일 불필요). (처음에 DSPico에 펌웨서가 설치 되어 있다면) 여기서 생성된 파일을 sd카드에 넣으면 DSPico가 사용가능해집니다.
+- `firmware`: DSPico 펌웨어만 빌드 (BIOS 파일 필요)
+- `all`: 펌웨어 + 로더 + 런처 모두 빌드 (BIOS 파일 필요)
+
+기본값은 WRFUxxed 비활성화입니다. WRFUxxed 사용 시:
 
 ```bash
 ./build.sh firmware --wrfuxxed
 ./build.sh all --wrfuxxed
 ```
 
+펌웨어와 all 모드는 공식 가이드를 기준으로 동작합니다.
+- https://github.com/LNH-team/dspico/blob/develop/GUIDE.md
+
 ## 출력
 
-결과물은 `out/`에 작성됩니다.
+결과물은 `out/`에 생성됩니다.
 
 ```text
 out/
