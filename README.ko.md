@@ -16,7 +16,7 @@
 - Docker
 - `firmware` 및 `all` 모드에 필요한 로컬 파일(loader&launcher만 빌드시 필요 없음)
   - NTR blowfish 소스: `biosnds7.rom` 또는 `ntrBlowfish.bin`
-  - TWL blowfish 소스: `biosdsi7.rom` 또는 `twlBlowfish.bin`
+  - 선택 TWL blowfish 소스: `biosdsi7.rom` 또는 `twlBlowfish.bin` (TWL 하이브리드/전용 롬 암호화 시에만 필요)
   - Blowfish 테이블 참고: https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
 - `--wrfuxxed` 사용 시에만 필요한 선택 파일
   - `wrfu.srl` (WRFU Tester v0.60)

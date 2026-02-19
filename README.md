@@ -16,7 +16,7 @@ It supports three modes:
 - Docker
 - Local files required for `firmware` and `all` modes (not needed for loader/launcher-only builds), placed under `assets/`:
   - NTR blowfish source: `biosnds7.rom` or `ntrBlowfish.bin`
-  - TWL blowfish source: `biosdsi7.rom` or `twlBlowfish.bin`
+  - Optional TWL blowfish source: `biosdsi7.rom` or `twlBlowfish.bin` (only needed for TWL hybrid/exclusive ROM encryption)
   - Blowfish table reference: https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
 - Optional only with `--wrfuxxed`:
   - `wrfu.srl` (WRFU Tester v0.60)

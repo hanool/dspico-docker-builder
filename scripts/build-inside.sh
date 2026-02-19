@@ -76,7 +76,6 @@ build_loader_launcher() {
 
 build_firmware() {
   require_any_asset biosnds7.rom ntrBlowfish.bin "NTR blowfish source"
-  require_any_asset biosdsi7.rom twlBlowfish.bin "TWL blowfish source"
 
   clone_latest https://github.com/Gericom/DSRomEncryptor.git DSRomEncryptor
   clone_latest https://github.com/LNH-team/dspico-dldi.git dspico-dldi
