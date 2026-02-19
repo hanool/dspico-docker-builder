@@ -6,8 +6,44 @@ DOCKERFILE="loader_launcher.dockerfile"
 OUTPUT_DIR="out"
 ASSETS_DIR="assets"
 
-MODE="${1:-loader-launcher}"
-shift || true
+MODE="${1:-}"
+if [[ -n "$MODE" ]]; then
+  shift
+fi
+
+if [[ -z "$MODE" ]]; then
+  if [[ ! -t 0 ]]; then
+    echo "No mode provided and no interactive terminal available" >&2
+    echo "Usage: ./build.sh [loader-launcher|firmware|all] [--wrfuxxed]" >&2
+    exit 1
+  fi
+
+  echo "Select build mode:"
+  echo "  1) loader-launcher"
+  echo "  2) firmware"
+  echo "  3) all"
+
+  while true; do
+    read -r -p "Enter choice [1-3]: " CHOICE
+    case "$CHOICE" in
+      1)
+        MODE="loader-launcher"
+        break
+        ;;
+      2)
+        MODE="firmware"
+        break
+        ;;
+      3)
+        MODE="all"
+        break
+        ;;
+      *)
+        echo "Invalid choice: $CHOICE. Please enter 1, 2, or 3." >&2
+        ;;
+    esac
+  done
+fi
 
 ENABLE_WRFUXXED=0
 while [[ $# -gt 0 ]]; do
