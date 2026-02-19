@@ -1,0 +1,56 @@
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+[ 20%] Building CXX object CMakeFiles/pioasm.dir/pio_assembler.cpp.o
+[ 20%] Building CXX object CMakeFiles/pioasm.dir/main.cpp.o
+[ 50%] Building CXX object CMakeFiles/pioasm.dir/python_output.cpp.o
+[ 50%] Building CXX object CMakeFiles/pioasm.dir/pio_disassembler.cpp.o
+[ 50%] Building CXX object CMakeFiles/pioasm.dir/gen/parser.cpp.o
+[ 60%] Building CXX object CMakeFiles/pioasm.dir/c_sdk_output.cpp.o
+[ 70%] Building CXX object CMakeFiles/pioasm.dir/ada_output.cpp.o
+[ 90%] Building CXX object CMakeFiles/pioasm.dir/gen/lexer.cpp.o
+[ 80%] Building CXX object CMakeFiles/pioasm.dir/hex_output.cpp.o
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /work/src/dspico-firmware/build/elf2uf2
+[ 16%] Performing build step for 'ELF2UF2Build'
+[ 50%] Building CXX object CMakeFiles/elf2uf2.dir/main.cpp.o
+[100%] Linking CXX executable elf2uf2
+[100%] Built target elf2uf2
+[ 17%] No install step for 'ELF2UF2Build'
+[ 18%] Completed 'ELF2UF2Build'
+[ 18%] Built target ELF2UF2Build
+[100%] Linking CXX executable pioasm
+[100%] Built target pioasm
+[ 19%] No install step for 'PioasmBuild'
+[ 20%] Completed 'PioasmBuild'
+[ 20%] Built target PioasmBuild
+[ 22%] Generating ntrCard.pio.h
+[ 22%] Generating rp2040_sdio.pio.h
+[ 22%] Built target DSpico_rp2040_sdio_pio_h
+[ 22%] Built target DSpico_ntrCard_pio_h
+[ 25%] Building ASM object CMakeFiles/DSpico.dir/src/romData.S.obj
+[ 25%] Building C object CMakeFiles/DSpico.dir/src/blowfish.c.obj
+[ 24%] Building CXX object CMakeFiles/DSpico.dir/src/main.cpp.obj
+[ 27%] Building C object CMakeFiles/DSpico.dir/src/scrambler.c.obj
+[ 27%] Building C object CMakeFiles/DSpico.dir/src/ntrCardRomNorm.c.obj
+[ 28%] Building C object CMakeFiles/DSpico.dir/src/powerSaving.c.obj
+[ 30%] Building C object CMakeFiles/DSpico.dir/src/ntrCardRomSecure.c.obj
+[ 30%] Building C object CMakeFiles/DSpico.dir/src/scramblerRing.c.obj
+[ 31%] Building C object CMakeFiles/DSpico.dir/src/ntrCardRomGame.c.obj
+[ 32%] Building C object CMakeFiles/DSpico.dir/src/ntrCardRomGameNoScramble.c.obj
+[ 33%] Building C object CMakeFiles/DSpico.dir/src/ntrCardRom.c.obj
+[ 34%] Building CXX object CMakeFiles/DSpico.dir/src/ntrCardRomGameSd.cpp.obj
+/work/src/dspico-firmware/src/romData.S: Assembler messages:
+/work/src/dspico-firmware/src/romData.S:5: Error: file not found: ../roms/default.nds
+gmake[2]: *** [CMakeFiles/DSpico.dir/build.make:89: CMakeFiles/DSpico.dir/src/romData.S.obj] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:1513: CMakeFiles/DSpico.dir/all] Error 2
+gmake: *** [Makefile:91: all] Error 2
+
