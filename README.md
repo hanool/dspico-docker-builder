@@ -26,7 +26,7 @@ docker --version
 
 ### 2) Prepare BIOS files
 
-To build `firmware` or `all` mode, you need one of the following. If you just bought DSPico, firmware is already installed, so you can skip this for now.
+To build firmware, you need one of the following. If you just bought DSPico, firmware is already installed, so you can skip this for now.
 
 - `biosnds7.rom` (recommended)
 - `ntrBlowfish.bin`
@@ -34,17 +34,13 @@ To build `firmware` or `all` mode, you need one of the following. If you just bo
 How to dump `biosnds7.rom`:
 - https://wiki.ds-homebrew.com/ds-index/ds-bios-firmware-dump
 
-Place prepared files in this repository's `assets/` directory.
+Place prepared files in `assets/`.
 
 Optional files:
-
 - For TWL hybrid/exclusive ROM encryption:
   - `biosdsi7.rom` or `twlBlowfish.bin`
 - When using `--wrfuxxed`:
   - `wrfu.srl` (WRFU Tester v0.60)
-
-Blowfish table reference:
-- https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
 
 ### 3) Get the source code
 
@@ -84,8 +80,8 @@ Or you can specify the mode directly.
 
 ```bash
 ./build.sh loader-launcher
-./build.sh firmware # builds firmware
-./build.sh all # builds both above
+./build.sh firmware
+./build.sh all
 ```
 
 - `loader-launcher`: builds Pico Loader + Pico Launcher only (no BIOS file required). SD-card copy-ready files are generated in `out/sdcard/`.

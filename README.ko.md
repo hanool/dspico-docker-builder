@@ -26,7 +26,7 @@ docker --version
 
 ### 2) BIOS 파일 준비
 
-`firmware` 또는 `all` 모드를 빌드하려면 다음 중 하나가 필요합니다. 처음 DSPico를 구매하면 펌웨어가 이미 설치되어 있으니 일단 넘어가도 괜찮습니다.
+펌웨어를 빌드하려면 다음 중 하나가 필요합니다. 처음 DSPico를 구매하면 펌웨어가 이미 설치되어 있으니 일단 넘어가도 괜찮습니다.
 
 - `biosnds7.rom` (권장)
 - `ntrBlowfish.bin`
@@ -34,17 +34,13 @@ docker --version
 `biosnds7.rom` 덤프 방법:
 - https://wiki.ds-homebrew.com/ds-index/ds-bios-firmware-dump
 
-준비한 파일을 이 저장소의 `assets/` 폴더에 넣어주세요.
+준비한 파일을 `assets/` 폴더에 넣어주세요.
 
 선택 파일:
-
 - TWL 하이브리드/전용 롬 암호화 시:
   - `biosdsi7.rom` 또는 `twlBlowfish.bin`
 - `--wrfuxxed` 사용 시:
   - `wrfu.srl` (WRFU Tester v0.60)
-
-Blowfish 테이블 참고:
-- https://github.com/Gericom/DSRomEncryptor?tab=readme-ov-file#blowfish-tables
 
 ### 3) 소스 코드 받기
 
@@ -84,8 +80,8 @@ Enter choice [1-3]:
 
 ```bash
 ./build.sh loader-launcher
-./build.sh firmware # 펌웨어를 빌드합니다
-./build.sh all # 위의 둘 다 실행
+./build.sh firmware
+./build.sh all
 ```
 
 - `loader-launcher`: Pico Loader + Pico Launcher만 빌드 (BIOS 파일 불필요). SD 카드 복사 준비가 된 파일은 `out/sdcard/`에 생성됩니다.
