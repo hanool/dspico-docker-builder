@@ -1,5 +1,8 @@
 # DSPico Docker Builder
 
+[![English](https://img.shields.io/badge/lang-English-blue)](README.md)
+[![한국어](https://img.shields.io/badge/lang-한국어-red)](README.ko.md)
+
 This repository provides a Docker-based build flow for DSPico projects.
 
 It supports three modes:
@@ -8,12 +11,17 @@ It supports three modes:
 - `firmware`: build DSPico firmware pipeline only
 - `all`: build firmware, loader, and launcher in one run
 
-Upstream repositories are cloned fresh on every run, so each build uses the latest upstream state.
-
 ## Requirements
 
 - Docker
-- Local assets for firmware mode (see `assets/README.md`)
+- Local files required for `firmware` and `all` modes (not needed for loader/launcher-only builds), placed under `assets/`:
+  - NTR blowfish source: `biosnds7.rom` or `ntrBlowfish.bin`
+  - TWL blowfish source: `biosdsi7.rom` or `twlBlowfish.bin`
+- Optional only with `--wrfuxxed`:
+  - `wrfu.srl` (WRFU Tester v0.60)
+
+Firmware and all-mode builds follow the official guide:
+- https://github.com/LNH-team/dspico/blob/develop/GUIDE.md
 
 ## Build commands
 
@@ -32,9 +40,9 @@ WRFUxxed is disabled by default. To enable it in firmware/all mode:
 ./build.sh all --wrfuxxed
 ```
 
-## Output layout
+## Output
 
-Artifacts are exported to `out/`:
+Artifacts are written to `out/`:
 
 ```text
 out/
@@ -54,8 +62,3 @@ out/
     BOOTLOADER.nds
     uartBufv060.bin    # only with --wrfuxxed
 ```
-
-## Notes
-
-- `assets/` is intentionally excluded from git (except placeholders/docs) for copyrighted files.
-- `out/` is generated and ignored.
